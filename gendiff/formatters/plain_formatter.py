@@ -1,4 +1,4 @@
-from typing import MutableSequence, MutableMapping
+from typing import MutableMapping, MutableSequence
 
 
 def sanitize_plain_value(value):
@@ -8,7 +8,7 @@ def sanitize_plain_value(value):
         return str(value).lower()
     elif isinstance(value, str):
         return f'\'{value}\''
-    elif isinstance(value, MutableSequence) or isinstance(value, MutableMapping):
+    elif isinstance(value, (MutableSequence, MutableMapping)):
         return '[complex value]'
     return value
 
@@ -33,7 +33,8 @@ def _plain_format(diff_stubs, prefix, buf):
             case 'modified':
                 new_value = sanitize_plain_value(stub['new_value'])
                 buf.append(
-                    f'Property \'{key}\' was updated. From {value} to {new_value}'
+                    f'Property \'{key}\' was updated. '
+                    f'From {value} to {new_value}',
                 )
             case 'inline':
                 _plain_format(stub['value'], f'{key}.', buf)

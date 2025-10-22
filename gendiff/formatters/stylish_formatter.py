@@ -19,7 +19,10 @@ def stylish_format(diff_stubs, tab_num=0):
     for stub in diff_stubs:
         value = sanitize_stylish_value(stub['value'], tab_num + 1)
         if stub['action'] == 'inline':
-            result.append(f'{tab}    {stub["key"]}: {stylish_format(stub["value"], tab_num + 1)}'.rstrip(' '))
+            result.append(
+                f'{tab}    {stub["key"]}: '
+                f'{stylish_format(stub["value"], tab_num + 1)}'.rstrip(' '),
+            )
         elif stub['action'] == 'added':
             result.append(f'{tab}  + {stub["key"]}: {value}'.rstrip(' '))
         elif stub['action'] == 'deleted':
