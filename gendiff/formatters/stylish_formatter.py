@@ -21,18 +21,18 @@ def stylish_format(diff_stubs, tab_num=0):
         if stub['action'] == 'inline':
             result.append(
                 f'{tab}    {stub["key"]}: '
-                f'{stylish_format(stub["value"], tab_num + 1)}'.rstrip(' '),
+                f'{stylish_format(stub["value"], tab_num + 1)}',
             )
         elif stub['action'] == 'added':
-            result.append(f'{tab}  + {stub["key"]}: {value}'.rstrip(' '))
+            result.append(f'{tab}  + {stub["key"]}: {value}')
         elif stub['action'] == 'deleted':
-            result.append(f'{tab}  - {stub["key"]}: {value}'.rstrip(' '))
+            result.append(f'{tab}  - {stub["key"]}: {value}')
         elif stub['action'] == 'not_modified':
-            result.append(f'{tab}    {stub["key"]}: {value}'.rstrip(' '))
+            result.append(f'{tab}    {stub["key"]}: {value}')
         elif stub['action'] == 'modified':
             new_value = sanitize_stylish_value(stub['new_value'], tab_num + 1)
-            result.append(f'{tab}  - {stub["key"]}: {value}'.rstrip(' '))
-            result.append(f'{tab}  + {stub["key"]}: {new_value}'.rstrip(' '))
+            result.append(f'{tab}  - {stub["key"]}: {value}')
+            result.append(f'{tab}  + {stub["key"]}: {new_value}')
 
     content = '\n'.join(result)
     return f'{{\n{content}\n{tab}}}'
