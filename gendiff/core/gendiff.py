@@ -1,8 +1,8 @@
 from gendiff.core.stubs import generate_diff_stubs
-from gendiff.scripts.file_handler import parse_file_content
 from gendiff.formatters.json_formatter import json_format
 from gendiff.formatters.plain_formatter import plain_format
 from gendiff.formatters.stylish_formatter import stylish_format
+from gendiff.scripts.file_handler import parse_file_content
 
 
 def generate_diff(first_file, second_file, format_type='stylish'):
